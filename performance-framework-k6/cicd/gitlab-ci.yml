@@ -1,0 +1,8 @@
+stages:
+  - test
+
+load_test:
+  stage: test
+  image: grafana/k6
+  script:
+    - k6 run scripts/test-orders.js

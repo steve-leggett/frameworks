@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/yourname/performance-framework-k6.git'
+            }
+        }
+        stage('Install k6') {
+            steps {
+                sh 'brew install k6 || true'
+            }
+        }
+        stage('Run Load Test') {
+            steps {
+                sh 'k6 run scripts/test-orders.js'
+            }
+        }
+    }
+}
